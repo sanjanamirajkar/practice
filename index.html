@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps portfolio · cloud craft</title>
+  <!-- Google Fonts & Font Awesome for clean icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0f17;
+      font-family: 'Inter', sans-serif;
+      color: #eef2fb;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* glowing animated gradient background */
+    .bg-orb {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, rgba(45, 95, 255, 0.18) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(180, 80, 255, 0.15) 0%, transparent 45%),
+                  #0b0f17;
+      z-index: -2;
+    }
+
+    .grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(75, 130, 245, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 130, 245, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    /* HEADER with typewriter effect */
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .badge {
+      background: rgba(45, 95, 255, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(70, 140, 255, 0.25);
+      border-radius: 60px;
+      padding: 0.5rem 1.6rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #b0cdff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 20px -10px rgba(0, 100, 255, 0.4);
+    }
+
+    .badge i {
+      color: #3b82f6;
+    }
+
+    .header h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      background: linear-gradient(to right, #ffffff, #b2ccff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      letter-spacing: -1px;
+    }
+
+    .typing {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #9fb5e0;
+      min-height: 3rem;
+      border-right: 3px solid #3b82f6;
+      display: inline-block;
+      padding-right: 8px;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: #3b82f6; }
+      50% { border-color: transparent; }
+    }
+
+    .short-desc {
+      max-width: 600px;
+      margin: 1.8rem auto 0;
+      color: #a5b9dd;
+      font-size: 1.2rem;
+      background: rgba(20, 30, 50, 0.5);
+      backdrop-filter: blur(4px);
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      border: 1px solid rgba(80, 130, 255, 0.2);
+    }
+
+    /* SKILLS cloud — modern card */
+    .skills-section {
+      margin: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 2.5rem;
+      border-left: 8px solid #3b82f6;
+      padding-left: 1.5rem;
+      background: linear-gradient(90deg, rgba(59,130,246,0.1) 0%, transparent 90%);
+    }
+
+    .section-title i {
+      color: #3b82f6;
+      font-size: 2rem;
+    }
+
+    .skill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+      justify-content: center;
+    }
+
+    .skill-item {
+      background: rgba(18, 26, 40, 0.7);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(70, 130, 255, 0.25);
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 15px 25px -20px #1e3a8a;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+      box-shadow: 0 20px 30px -15px #2563eb;
+    }
+
+    .skill-item i {
+      font-size: 1.7rem;
+      color: #5f8cff;
+      width: 30px;
+    }
+
+    /* PROJECT cards — two projects with extra design */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(15, 22, 36, 0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: 2.5rem;
+      padding: 2rem 1.8rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 25px 40px -25px #000000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(145deg, #2563eb, #a855f7, #2563eb);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .project-card:hover::before {
+      opacity: 0.35;
+    }
+
+    .project-card:hover {
+      transform: scale(1.02) translateY(-6px);
+      border-color: transparent;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-icon {
+      background: linear-gradient(135deg, #1e3a8a, #1e1f4b);
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      color: #90b4ff;
+      border: 1px solid #2d4f9e;
+      box-shadow: 0 12px 18px -12px #0f172a;
+    }
+
+    .project-header h3 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: linear-gradient(to right, #f0f4ff, #b7d0ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin: 1.2rem 0 1.5rem;
+    }
+
+    .project-tags span {
+      background: rgba(30, 58, 138, 0.5);
+      border: 1px solid #2e4b9e;
+      border-radius: 30px;
+      padding: 0.3rem 1.2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #b8d1ff;
+      backdrop-filter: blur(2px);
+    }
+
+    .project-desc {
+      color: #c9dafc;
+      margin-bottom: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .project-highlight {
+      background: rgba(0, 30, 70, 0.6);
+      padding: 1rem 1.4rem;
+      border-radius: 1.8rem;
+      border-left: 5px solid #3b82f6;
+      font-size: 0.95rem;
+      color: #d3e2ff;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .project-highlight i {
+      color: #3b82f6;
+      font-size: 1.4rem;
+    }
+
+    /* extra CTA / contact line */
+    .connect-line {
+      margin: 5rem 0 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .glass-button {
+      background: rgba(20, 35, 65, 0.5);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(90, 150, 255, 0.4);
+      padding: 1rem 3rem;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 20px 30px -20px #000;
+      transition: 0.25s;
+      text-decoration: none;
+    }
+
+    .glass-button:hover {
+      background: rgba(40, 70, 140, 0.6);
+      border-color: #5f8aff;
+      gap: 20px;
+    }
+
+    /* footer / tiny details */
+    .footer-note {
+      text-align: center;
+      margin-top: 5rem;
+      color: #50658f;
+      font-size: 0.9rem;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .projects-grid { grid-template-columns: 1fr; }
+      .header h1 { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-orb"></div>
+  <div class="grid-overlay"></div>
+
+  <div class="container">
+    <!-- header with animated role -->
+    <div class="header">
+      <div class="badge">
+        <i class="fas fa-cloud-upload-alt"></i> 
+        <span>DEVOPS ENGINEER · SRE · AUTOMATION</span>
+      </div>
+      <h1>alex k.</h1>
+      <div class="typing" id="typewriter"></div>
+      <div class="short-desc">
+        <i class="fas fa-infinity" style="margin-right: 8px; color: #5f8aff;"></i> 
+        infrastructure as code · zero-downtime · cloud native
+      </div>
+    </div>
+
+    <!-- SKILLS section — all devops skills -->
+    <div class="skills-section">
+      <div class="section-title">
+        <i class="fas fa-cogs"></i>
+        <span>⚙️ core devops skillset</span>
+      </div>
+      <div class="skill-grid">
+        <!-- row 1: tools & platforms -->
+        <span class="skill-item"><i class="fab fa-docker"></i> Docker</span>
+        <span class="skill-item"><i class="fab fa-kubernetes"></i> Kubernetes</span>
+        <span class="skill-item"><i class="fas fa-code-branch"></i> Jenkins</span>
+        <span class="skill-item"><i class="fab fa-git-alt"></i> Git/GitHub Actions</span>
+        <span class="skill-item"><i class="fas fa-terminal"></i> Bash/Python</span>
+        <span class="skill-item"><i class="fab fa-aws"></i> AWS (EKS, EC2, S3)</span>
+        <span class="skill-item"><i class="fas fa-cloud"></i> Terraform</span>
+        <span class="skill-item"><i class="fas fa-box"></i> Ansible</span>
+        <span class="skill-item"><i class="fas fa-chart-line"></i> Prometheus/Grafana</span>
+        <span class="skill-item"><i class="fas fa-shield-alt"></i> Trivy/Snyk</span>
+        <span class="skill-item"><i class="fas fa-database"></i> ArgoCD</span>
+        <span class="skill-item"><i class="fas fa-network-wired"></i> Istio</span>
+        <span class="skill-item"><i class="fas fa-file-code"></i> YAML/HELM</span>
+        <span class="skill-item"><i class="fas fa-linux"></i> Linux (systemd)</span>
+        <span class="skill-item"><i class="fas fa-cloud-upload-alt"></i> CI/CD pipelines</span>
+        <!-- additional skill to fill -->
+        <span class="skill-item"><i class="fas fa-dice-d6"></i> Kustomize</span>
+      </div>
+    </div>
+
+    <!-- PROJECTS : exactly 2 projects, with impressive details -->
+    <div style="margin: 5rem 0 2rem;">
+      <div class="section-title">
+        <i class="fas fa-rocket"></i>
+        <span>📌 featured projects</span>
+      </div>
+
+      <div class="projects-grid">
+        <!-- PROJECT 1 – Multi-cluster observability -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-satellite-dish"></i></div>
+            <h3>KubeFusion<br><span style="font-size: 0.9rem; color: #7f9fdb; display: block; font-weight: 400;">observability mesh</span></h3>
+          </div>
+          <div class="project-tags">
+            <span>Prometheus</span><span>Thanos</span><span>Grafana</span><span>Istio</span><span>Loki</span>
+          </div>
+          <div class="project-desc">
+            <i class="fas fa-bolt" style="color: #fbbf24; margin-right: 8px;"></i>
+            Unified observability across 5 Kubernetes clusters (dev/stg/prod) with long-term retention. 
+            Implemented multi-tenancy metrics with Thanos receive and sidecar, dashboards as code (grafonnet), and SLO alerting with synthetic probes.
+          </div>
+          <div class="project-highlight">
+            <i class="fas fa-tachometer-alt"></i>
+            <span><strong>99.99%</strong> metric availability · reduced MTTR by 40% · cross-cluster tracing</span>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; gap: 12px; font-size: 0.95rem; color: #86abff;">
+            <i class="fas fa-check-circle"></i> gitops with argocd
+            <i class="fas fa-check-circle" style="margin-left: 12px;"></i> thanos compact & store
+          </div>
+        </div>
+
+        <!-- PROJECT 2 – GitOps delivery platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-git-alt"></i></div>
+            <h3>Fluxion<br><span style="font-size: 0.9rem; color: #7f9fdb; display: block; font-weight: 400;">gitops & canary</span></h3>
+          </div>
+          <div class="project-tags">
+            <span>ArgoCD</span><span>Flagger</span><span>Helm</span><span>Kustomize</span><span>GitHub Actions</span>
+          </div>
+          <div class="project-desc">
+            <i class="fas fa-bolt" style="color: #fbbf24; margin-right: 8px;"></i>
+            Fully automated delivery pipeline for 15+ microservices. Progressive delivery with Flagger (canary, A/B testing), 
+            automated rollbacks based on Prometheus metrics. Integrated security scanning (Trivy) and SBOM generation.
+          </div>
+          <div class="project-highlight">
+            <i class="fas fa-shield-virus"></i>
+            <span><strong>zero-downtime</strong> deployments · 200+ deploys/month · 60% faster recovery</span>
+          </div>
+          <div style="margin-top: 1.5rem; display: flex; gap: 12px; font-size: 0.95rem; color: #86abff;">
+            <i class="fas fa-check-circle"></i> weave gitops · notification controller
+            <i class="fas fa-check-circle" style="margin-left: 12px;"></i> policy-as-code (kyverno)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- extra "designfull" touch: terminal/connect block -->
+    <div class="connect-line">
+      <a href="#" class="glass-button">
+        <i class="fas fa-terminal"></i> 
+        <span>curl -X connect alex.devops/portfolio</span>
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
+    <!-- skill expansion (hidden gem) -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem 3rem; margin: 3rem 0; padding: 2rem 0; border-top: 1px dashed #2e3e65; border-bottom: 1px dashed #2e3e65;">
+      <div><i class="fas fa-dharmachakra" style="color: #5f8aff;"></i> CKA · CKAD patterns</div>
+      <div><i class="fas fa-dragon"></i> Crossplane · composition</div>
+      <div><i class="fas fa-fan"></i> Vault · secrets</div>
+      <div><i class="fas fa-bezier-curve"></i> pulumi (typescript)</div>
+    </div>
+
+    <!-- footer just for vibe -->
+    <div class="footer-note">
+      <i class="fas fa-crown" style="opacity: 0.5;"></i> 
+      <span> always shipping · infrastructure as art · 2025 </span>
+      <i class="fas fa-crown" style="opacity: 0.5;"></i>
+    </div>
+  </div>
+
+  <!-- simple typewriter effect -->
+  <script>
+    const words = ["cloud architect", "automation addict", "gitops believer", "k8s whisperer"];
+    let i = 0;
+    let j = 0;
+    let currentWord = "";
+    let isDeleting = false;
+    const typewriterEl = document.getElementById("typewriter");
+
+    function typeEffect() {
+      if (i === words.length) i = 0;
+      currentWord = words[i];
+
+      if (isDeleting) {
+        typewriterEl.textContent = currentWord.substring(0, j - 1);
+        j--;
+      } else {
+        typewriterEl.textContent = currentWord.substring(0, j + 1);
+        j++;
+      }
+
+      if (!isDeleting && j === currentWord.length + 1) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000); // pause at full word
+        return;
+      }
+
+      if (isDeleting && j === 0) {
+        isDeleting = false;
+        i++;
+        setTimeout(typeEffect, 400);
+        return;
+      }
+
+      const speed = isDeleting ? 60 : 110;
+      setTimeout(typeEffect, speed);
+    }
+
+    // start the effect after page load
+    window.addEventListener('load', typeEffect);
+  </script>
+  <!-- ensure typing area has default initial -->
+  <noscript>devops engineer</noscript>
+</body>
+</html>
